@@ -1,0 +1,18 @@
+[
+  {
+    "id": "jazariya",
+    "title": "متن الجزرية",
+    "category": "تجويد",
+    "audio": "/audios/jazariya.mp3",
+    "sync": "/sync/jazariya.json",
+    "cover": "/covers/jazariya.jpg"
+  },
+  {
+    "id": "ajrumiyya",
+    "title": "متن الآجرومية",
+    "category": "نحو",
+    "audio": "/audios/ajrumiyya.mp3",
+    "sync": "/sync/ajrumiyya.json",
+    "cover": "/covers/ajrumiyya.jpg"
+  }
+]
