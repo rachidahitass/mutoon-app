@@ -138,7 +138,24 @@ export default function useMatnPlayer(audioSrc, syncData) {
     setRepeatStartId(null); 
     setRepeatEndId(null); 
   };
+// Auto-save progress every 800ms
+useEffect(() => {
+  if (!audioRef.current) return;
 
+  const interval = setInterval(() => {
+    localStorage.setItem(
+      `progress:${audioSrc}`,
+      JSON.stringify({
+        time: audioRef.current.currentTime,
+        line: activeLineId,
+        speed: playbackRate
+      })
+    );
+  }, 800);
+
+  return () => clearInterval(interval);
+}, [audioSrc, activeLineId, playbackRate]);
+  
   return {
     isPlaying, currentTime, duration, activeLineId,
     repeatStartId, repeatEndId,

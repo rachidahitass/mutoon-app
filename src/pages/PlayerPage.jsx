@@ -64,6 +64,19 @@ export default function PlayerPage() {
   }, [matn]);
 
   const player = useMatnPlayer(matn.audio, sync);
+  useEffect(() => {
+  if (!sync.length) return;
+
+  const saved = localStorage.getItem(`progress:${matn.id}`);
+  if (!saved) return;
+
+  const obj = JSON.parse(saved);
+
+  // restore
+  if (obj.time) player.seek(obj.time);
+  if (obj.speed) player.setPlaybackRate(obj.speed);
+}, [sync]);
+
 
   // Loading state
   if (loading) {
