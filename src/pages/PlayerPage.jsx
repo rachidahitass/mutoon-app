@@ -63,18 +63,26 @@ export default function PlayerPage() {
     return () => abortController.abort();
   }, [matn]);
 
-  const player = useMatnPlayer(matn.audio, sync);
-  useEffect(() => {
+  const player = useMatnPlayer(matn.id, matn.audio, sync);
+useEffect(() => {
   if (!sync.length) return;
 
   const saved = localStorage.getItem(`progress:${matn.id}`);
   if (!saved) return;
 
-  const obj = JSON.parse(saved);
+  try {
+    const obj = JSON.parse(saved);
 
-  // restore
-  if (obj.time) player.seek(obj.time);
-  if (obj.speed) player.setPlaybackRate(obj.speed);
+    if (obj.time !== undefined) {
+      player.seek(obj.time);
+    }
+
+    if (obj.speed !== undefined) {
+      player.setPlaybackRate(obj.speed);
+    }
+  } catch (err) {
+    console.error("Failed to restore progress", err);
+  }
 }, [sync]);
 
 

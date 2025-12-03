@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-export default function useMatnPlayer(audioSrc, syncData) {
+export default function useMatnPlayer(matnId,audioSrc, syncData) {
   const audioRef = useRef(null);
   const rafRef = useRef(null);
 
@@ -144,7 +144,7 @@ useEffect(() => {
 
   const interval = setInterval(() => {
     localStorage.setItem(
-      `progress:${audioSrc}`,
+      `progress:${matnId}`,
       JSON.stringify({
         time: audioRef.current.currentTime,
         line: activeLineId,
@@ -154,7 +154,7 @@ useEffect(() => {
   }, 800);
 
   return () => clearInterval(interval);
-}, [audioSrc, activeLineId, playbackRate]);
+}, [matnId, activeLineId, playbackRate]);
   
   return {
     isPlaying, currentTime, duration, activeLineId,
