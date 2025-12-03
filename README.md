@@ -1,142 +1,333 @@
-# 📚 Mutoon App - مكتبة المتون
+# 📚 تطبيق المتون — Mutoon App
 
-A modern web application for memorizing and reviewing Islamic texts (متون) with synchronized audio playback.
+منصّة حديثة لحفظ ومراجعة المتون الإسلامية مع مزامنة صوتية وخصائص ذكية للتكرار والتنقل.
+
+<div align="center">
+
+<!-- ضع الشعار هنا -->
+
+<br/>
+
+![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5.0-646cff?logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8?logo=tailwind-css&logoColor=white)
+![License](https://img.shields.io/badge/الترخيص-MIT-green)
+![Build](https://img.shields.io/badge/البناء-ناجح-brightgreen)
+
+</div>
+
+---
+
+## ✨ المزايا
+
+أداة مصممة لطالب العلم للاستماع إلى المتون ومراجعتها وحفظها بدقة:
+
+- 🎵 **مزامنة صوتية** — تمييز السطر المتوافق مع الصوت  
+- 🔁 **تكرار A–B** — تحديد بداية ونهاية للتكرار  
+- 🌙 **الوضع الليلي والفاتح**  
+- ⚡ **التحكم في سرعة التشغيل**  
+- 📱 **تصميم متجاوب**  
+- 🔍 **بحث ذكي حسب العنوان أو الفئة**  
+- 🎯 **القفز إلى السطر عند الضغط عليه**  
+- ⬆️ **التمرير التلقائي للسطر النشط**  
+- 🧭 **تنقّل سلس** بين الصفحات  
+- ♿ **متوافق مع معايير الوصول**  
+
+---
+
+## 🚀 البدء
+
+### المتطلبات
+- Node.js ≥ 16  
+- npm أو yarn  
+
+### التثبيت
+
+```bash
+git clone <your-repo-url>
+cd mutoon-app
+npm install
+npm run dev
+ثم افتح:
+👉 http://localhost:5173
+```
+### 🏗️ هيكلة المشروع
+```
+mutoon-app/
+├── public/
+│   ├── audios/          # ملفات الصوت
+│   ├── covers/          # صور الأغلفة
+│   └── sync/            # ملفات التوقيت JSON
+├── src/
+│   ├── components/      # المكوّنات
+│   ├── context/         # وضع الثيم
+│   ├── data/            # mutoons.json
+│   ├── hooks/           # useMatnPlayer
+│   ├── pages/           # الصفحات
+│   ├── App.jsx          # الراوتر
+│   └── main.jsx         # نقطة البدء
+└── package.json
+```
+### 📖 الاستخدام
+إضافة متن جديد:
+1. ضع ملف الصوت في: public/audios/
+2. أنشئ ملف التوقيت في: public/sync/
+
+بصيغة:
+
+```
+[
+  { "id": 1, "text": "النص العربي", "start_time": 0.0, "end_time": 2.5 }
+]
+```
+
+3. ضع صورة الغلاف في: public/covers/
+4. أضف مدخلاً جديدًا إلى: src/data/mutoons.json
+
+
+  مثال:
+```
+{
+  "id": "jazariya",
+  "title": "متن الجزرية",
+  "category": "تجويد",
+  "audio": "/audios/jazariya.mp3",
+  "sync": "/sync/jazariya.json",
+  "cover": "/covers/jazariya.jpg"
+}
+```
+### 🎮 أدوات المشغّل
+
+▶️ تشغيل / إيقاف
+
+⏪ رجوع 5 ثوانٍ
+
+⏩ تقديم 5 ثوانٍ
+
+🎚️ تغيير السرعة
+
+🚩 تكرار A–B
+
+🖱️ القفز لسطر
+
+🔽 التمرير التلقائي
+
+🎨 التخصيص
+الثيم
+
+الوضع الداكن والفاتح محفوظ في localStorage.
+
+الخط
+
+الخط الافتراضي: أميري
+يمكن تغييره في src/index.css:
+```
+body { font-family: 'Amiri', serif; }
+```
+### 🛠️ تم بناؤه باستخدام
+
+* React 19
+* Vite
+* Tailwind CSS
+* React Router
+* Lucide Icons
+
+### 📝 الأوامر
+```
+npm run dev
+npm run build
+npm run preview
+npm run lint
+```
+### 🤝 المساهمة
+
+مرحب بالمساهمات!
+الرجاء الالتزام بهيكلية الملفات الحالية.
+
+### 📄 الترخيص
+
+الترخيص المفتوح MIT License.
+
+### 🙏 الشكر
+
+العلماء الذين حفظوا هذه المتون
+
+مجتمع المصادر المفتوحة
+
+كل من ساهم في هذا المشروع
+
+<div align="center">
+
+صُنع بحب لخدمة أهل القرآن وطلبة العلم ❤️
+
+</div>
+
+### English version
+
+# 📚 Mutoon App — مكتبة المتون
+
+An interactive platform for memorizing and reviewing Islamic texts (متون) with synchronized audio and intelligent playback tools.
+
+<div align="center">
+
+<!-- Add your logo here -->
+
+<br/>
+
+![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5.0-646cff?logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8?logo=tailwind-css&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+
+</div>
+
+---
 
 ## ✨ Features
 
-- 🎵 **Audio Synchronization**: Real-time text highlighting synchronized with audio
-- 🔁 **A-B Repeat**: Set start and end points to repeat specific sections
-- 🌙 **Dark Mode**: Full dark mode support with smooth transitions
-- ⚡ **Playback Speed Control**: Adjust speed (0.75x, 1x, 1.25x, 1.5x)
-- 📱 **Responsive Design**: Works seamlessly on mobile and desktop
-- 🔍 **Search & Filter**: Find texts by title or category
-- ♿ **Accessible**: ARIA labels and keyboard-friendly controls
+A modern study tool designed for students of knowledge to **listen**, **memorize**, and **review** Islamic texts with precision:
+
+- 🎵 **Audio Synchronization** — Real-time text highlighting  
+- 🔁 **A–B Repeat Loop** — Loop any selected range  
+- 🌙 **Light/Dark Mode** — Saves preference automatically  
+- ⚡ **Speed Control** — 0.75× · 1× · 1.25× · 1.5×  
+- 📱 **Responsive UI** — Works on phones and desktop  
+- 🔍 **Smart Search** — By title or category  
+- 🎯 **Click-to-Seek** — Tap a line to jump in audio  
+- ⬆️ **Auto-Scroll** — Always centers active line  
+- 🧭 **Smooth Routing** — Library → Player → Back  
+- ♿ **Accessible** — Keyboard-friendly + ARIA labels  
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
+- Node.js ≥ 16  
+- npm or yarn  
 
 ### Installation
 
-1. Clone the repository:
 ```bash
 git clone <your-repo-url>
 cd mutoon-app
-```
-
-2. Install dependencies:
-```bash
 npm install
-```
-
-3. Start the development server:
-```bash
 npm run dev
 ```
-
-4. Open your browser and navigate to `http://localhost:5173`
+Open:
+👉 http://localhost:5173
 
 ## 🏗️ Project Structure
-
-```
+```bash
 mutoon-app/
 ├── public/
-│   ├── audios/          # Audio files for each matn
-│   ├── covers/          # Cover images for library cards
-│   └── sync/            # JSON sync files for text-audio alignment
+│   ├── audios/          # Audio files
+│   ├── covers/          # Cover images
+│   └── sync/            # Timestamp JSON files
 ├── src/
-│   ├── components/      # Reusable React components
-│   ├── context/         # React context (Theme)
-│   ├── data/            # Static data (mutoons.json)
-│   ├── hooks/           # Custom React hooks
-│   ├── pages/           # Page components (Library, Player)
-│   ├── App.jsx          # Main app component with routing
-│   └── main.jsx         # Entry point
+│   ├── components/      # UI components (PlayerControls, ThemeToggle, etc.)
+│   ├── context/         # Theme (dark/light)
+│   ├── data/            # mutoons.json (list of available texts)
+│   ├── hooks/           # Custom hooks (useMatnPlayer)
+│   ├── pages/           # LibraryPage, PlayerPage
+│   ├── App.jsx          # Routes
+│   └── main.jsx         # App entry point
 └── package.json
 ```
+### 📖 Usage
 
-## 📖 Usage
+### 📌 Adding a New Matn
+Add an audio file to: public/audios/
 
-### Adding a New Matn
+1. Add a sync JSON file to: public/sync/
 
-1. Add the audio file to `public/audios/`
-2. Create a sync JSON file in `public/sync/` with this format:
-```json
+Example sync JSON:
+```bash
 [
-  {
-    "id": 1,
-    "text": "النص العربي",
-    "start_time": 0.0,
-    "end_time": 2.5
-  }
+  { "id": 1, "text": "النص العربي", "start_time": 0.0, "end_time": 2.5 }
 ]
 ```
-3. Add a cover image to `public/covers/`
-4. Update `src/data/mutoons.json`:
-```json
+
+2. Add a cover image to: public/covers/
+
+
+3. Add the new matn to: src/data/mutoons.json
+
+Example:
+```bash
 {
-  "id": "unique-id",
-  "title": "اسم المتن",
-  "category": "الفئة",
-  "audio": "/audios/filename.mp3",
-  "sync": "/sync/filename.json",
-  "cover": "/covers/filename.jpg"
+  "id": "jazariya",
+  "title": "متن الجزرية",
+  "category": "تجويد",
+  "audio": "/audios/jazariya.mp3",
+  "sync": "/sync/jazariya.json",
+  "cover": "/covers/jazariya.jpg"
 }
 ```
+### 🎮 Player Controls
 
-### Player Controls
+▶️ Play / Pause
 
-- **Play/Pause**: Click the center button
-- **Skip**: Use the rotate buttons to skip ±5 seconds
-- **Speed**: Toggle between 0.75x, 1x, 1.25x, 1.5x
-- **Repeat**: 
-  - Click the green flag to set start point
-  - Click the red flag to set end point
-  - Audio will loop between these points
-- **Seek**: Click on any line to jump to that position
+⏪ Skip −5 seconds
 
-## 🛠️ Built With
+⏩ Skip +5 seconds
 
-- **React 19** - UI framework
-- **Vite** - Build tool
-- **React Router** - Routing
-- **Tailwind CSS** - Styling
-- **Lucide React** - Icons
+🎚️ Playback Speed
 
-## 📝 Scripts
+🚩 Repeat A–B
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+🖱️ Click-to-Seek
+
+🔽 Auto-Scroll
 
 ## 🎨 Customization
-
 ### Theme
 
-The app supports light and dark modes. Theme preference is saved in localStorage.
+Light/dark theme stored in localStorage.
+Controlled via ThemeContext.jsx.
 
 ### Fonts
 
-Currently using **Amiri** font for Arabic text. You can change this in `src/index.css`.
+Default font: Amiri
+Modify in src/index.css:
+```bash
+body { font-family: 'Amiri', serif; }
+```
+### 🛠️ Built With
 
-## 🤝 Contributing
+* React 19
+* Vite 5
+* Tailwind CSS
+* React Router
+* Lucide Icons
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### 📝 Scripts
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+```
+### 🤝 Contributing
 
-## 📄 License
+Contributions are welcome!
+Please follow the existing file structure when adding new components or texts.
 
-This project is open source and available under the MIT License.
+### 📄 License
 
-## 🙏 Acknowledgments
+Licensed under the MIT License.
 
-- Islamic scholars for preserving these valuable texts
-- The React and Vite communities
-- All contributors to this project
+### 🙏 Acknowledgments
 
----
+Scholars who preserved these texts
+
+The open-source community
+
+All contributors
+
+<div align="center">
 
 Made with ❤️ for the Muslim community
+
+</div>
