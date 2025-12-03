@@ -17,6 +17,9 @@ export default function PlayerPage() {
   const [sync, setSync] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [resumeData, setResumeData] = useState(null);
+  const [showResumePrompt, setShowResumePrompt] = useState(false);
+
 
   // Handle invalid matn ID
   if (!matn) {
@@ -64,26 +67,20 @@ export default function PlayerPage() {
   }, [matn]);
 
   const player = useMatnPlayer(matn.id, matn.audio, sync);
-useEffect(() => {
-  if (!sync.length) return;
+  useEffect(() => {
+    if (!sync.length) return;
 
-  const saved = localStorage.getItem(`progress:${matn.id}`);
-  if (!saved) return;
+    const saved = localStorage.getItem(`progress:${matn.id}`);
+    if (!saved) return;
 
-  try {
-    const obj = JSON.parse(saved);
+    try {
+      const obj = JSON.parse(saved);
 
-    if (obj.time !== undefined) {
-      player.seek(obj.time);
-    }
-
-    if (obj.speed !== undefined) {
-      player.setPlaybackRate(obj.speed);
-    }
-  } catch (err) {
-    console.error("Failed to restore progress", err);
-  }
-}, [sync]);
+      // Store progress, but do NOT apply it yet
+      setResumeData(obj);
+      setShowResumePrompt(true); // show popup
+    } catch {}
+  }, [sync]);
 
 
   // Loading state
@@ -115,6 +112,22 @@ useEffect(() => {
       </div>
     );
   }
+const handleResume = () => {
+  if (!resumeData) return;
+
+  if (resumeData.time !== undefined) {
+    player.seek(resumeData.time);
+  }
+  if (resumeData.speed !== undefined) {
+    player.setPlaybackRate(resumeData.speed);
+  }
+
+  setShowResumePrompt(false);
+};
+
+const handleIgnore = () => {
+  setShowResumePrompt(false);
+};
 
   return (
     <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900">
@@ -156,6 +169,40 @@ useEffect(() => {
           <PlayerControls player={player} />
         </div>
       </div>
+      {showResumePrompt && resumeData && (
+  <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 backdrop-blur-sm">
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl w-80 text-center space-y-4">
+      <h2 className="text-lg font-bold text-gray-800 dark:text-gray-100">
+        متابعة من آخر موضع؟
+      </h2>
+
+      <p className="text-sm text-gray-600 dark:text-gray-300">
+        توقفت عند الدقيقة:  
+        <span className="font-bold text-indigo-600 dark:text-indigo-300">
+          {Math.floor(resumeData.time / 60)}:
+          {String(Math.floor(resumeData.time % 60)).padStart(2, "0")}
+        </span>
+      </p>
+
+      <div className="flex justify-center gap-3 pt-2">
+        <button
+          onClick={handleResume}
+          className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
+        >
+          نعم
+        </button>
+
+        <button
+          onClick={handleIgnore}
+          className="px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-900 dark:text-gray-100 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-500 transition"
+        >
+          لا
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
