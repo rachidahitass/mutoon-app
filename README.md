@@ -3,7 +3,7 @@
 منصّة حديثة لحفظ ومراجعة المتون الإسلامية مع مزامنة صوتية وخصائص ذكية للتكرار والتنقل.
 
 <div align="center">
-
+[![FreePalestine.Dev](https://freepalestine.dev/badge?t=f&u=0&r=1)](https://freepalestine.dev)
 <!-- ضع الشعار هنا -->
 
 <br/>
