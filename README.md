@@ -4,7 +4,7 @@
 
 [![FreePalestine.Dev](https://freepalestine.dev/badge?t=f&u=0&r=1)](https://freepalestine.dev)
 <div align="center">
-<a href="https://freepalestine.dev"><img src="https://freepalestine.dev/badge?t=d&u=0&r=1" alt="From the river to the sea, Palestine will be free" /></a>
+<a href="https://freepalestine.dev"><img src="https://freepalestine.dev/badge?t=d&u=0&r=1" width="100%" height="auto" alt="From the river to the sea, Palestine will be free" /></a>
 <br/>
 
 ![React](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=white)
